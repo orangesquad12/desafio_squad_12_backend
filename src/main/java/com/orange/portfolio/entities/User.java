@@ -2,13 +2,13 @@ package com.orange.portfolio.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-
+import com.orange.portfolio.entities.Project;
 import java.io.Serializable;
 import java.util.Objects;
 
 @Entity
 @Table(name = "tb_user")
-public class User implements{
+public class User implements Serializable{
     private static final long serialVersionUID = 1l;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,8 +20,9 @@ public class User implements{
     private String email;
     @JsonIgnore
     @OneToMany(mappedBy = "client")
+
     private List<Project> projects;
-    public User(){
+    public User() {
         //Construtor sem argumentos
 
 
