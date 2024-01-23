@@ -2,10 +2,9 @@ package com.orange.portfolio.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import com.orange.portfolio.entities.Project;
 import java.io.Serializable;
-import java.util.Objects;
 import java.util.List;
+import java.util.Objects;
 
 @Entity
 @Table(name = "tb_user")
@@ -13,7 +12,7 @@ public class User implements Serializable {
     private static final long serialVersionUID = 1l;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
     private String firstName;
     private String lastName;
     private String image;
@@ -38,7 +37,7 @@ public class User implements Serializable {
         this.projects = projects;
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 

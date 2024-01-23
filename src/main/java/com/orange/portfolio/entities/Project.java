@@ -9,14 +9,13 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "tb_project")
-
 public class Project  implements Serializable {
 
     private static final long serialVersionUID = 1l;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
     @ManyToOne
     @JoinColumn(name = "client_Id")
@@ -44,7 +43,7 @@ public class Project  implements Serializable {
         this.date = date;
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
