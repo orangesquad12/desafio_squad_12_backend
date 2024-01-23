@@ -5,10 +5,11 @@ import jakarta.persistence.*;
 import com.orange.portfolio.entities.Project;
 import java.io.Serializable;
 import java.util.Objects;
+import java.util.List;
 
 @Entity
 @Table(name = "tb_user")
-public class User implements Serializable{
+public class User implements Serializable {
     private static final long serialVersionUID = 1l;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,13 +21,14 @@ public class User implements Serializable{
     private String email;
     @JsonIgnore
     @OneToMany(mappedBy = "client")
-
     private List<Project> projects;
+
     public User() {
         //Construtor sem argumentos
 
 
     }
+
     public User(String firstName, String lastName, String image, String country, String email, List<Project> projects) {
         this.firstName = firstName;
         this.lastName = lastName;
@@ -88,6 +90,7 @@ public class User implements Serializable{
     public void setProjects(List<Project> projects) {
         this.projects = projects;
     }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -101,7 +104,7 @@ public class User implements Serializable{
         return Objects.hash(id, firstName, lastName, image, country, email, projects);
     }
 
-
+}
 
 
 
