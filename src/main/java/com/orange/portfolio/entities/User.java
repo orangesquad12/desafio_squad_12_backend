@@ -19,7 +19,7 @@ public class User implements Serializable {
     private String country;
     private String email;
     @JsonIgnore
-    @OneToMany(mappedBy = "client")
+    @OneToMany(mappedBy = "userId")
     private List<Project> projects;
 
     public User() {
