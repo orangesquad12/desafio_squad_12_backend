@@ -3,7 +3,7 @@ package com.orange.portfolio.entities;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
-import java.time.Instant;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Objects;
 
@@ -28,13 +28,13 @@ public class Project  implements Serializable {
 
     private String description;
     private String image;
-    private Instant date;
+    private LocalDate date;
 
     public Project() {
 
     }
 
-    public Project(User userId, String title, List<String> tags, String description, String image, Instant date) {
+    public Project(User userId, String title, List<String> tags, String description, String image, LocalDate date) {
         this.userId = userId;
         this.title = title;
         this.tags = tags;
@@ -67,7 +67,7 @@ public class Project  implements Serializable {
         return image;
     }
 
-    public Instant getDate() {
+    public LocalDate getDate() {
         return date;
     }
 
@@ -91,7 +91,7 @@ public class Project  implements Serializable {
         this.image = image;
     }
 
-    public void setDate(Instant date) {
+    public void setDate(LocalDate date) {
         this.date = date;
     }
 
