@@ -1,6 +1,7 @@
 package com.orange.portfolio.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.orange.portfolio.dtos.user.UserDTO;
 import jakarta.persistence.*;
 import java.io.Serializable;
 import java.util.List;
@@ -24,9 +25,16 @@ public class User implements Serializable {
 
     public User() {
         //Construtor sem argumentos
-
-
     }
+
+    public User(UserDTO data){
+        this.firstName = data.firstName();
+        this.lastName = data.lastName();
+        this.country = data.country();
+        this.email = data.email();
+        this.image = data.image();
+    }
+
 
     public User(String firstName, String lastName, String image, String country, String email, List<Project> projects) {
         this.firstName = firstName;
