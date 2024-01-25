@@ -31,7 +31,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void delete(Long id) {
-        var user = repository.findById(id);
+        var user = repository.findById(id).orElseThrow();
         repository.delete(user);
     }
 }
