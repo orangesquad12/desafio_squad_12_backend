@@ -28,7 +28,7 @@ public class ProjectServiceImpl implements ProjectService {
 
     @Override
     public Project getProjectByTag(String tag) {
-        return repository.findProjectByTag(tag);
+        return repository.findProjectByTags(tag);
     }
 
     @Override

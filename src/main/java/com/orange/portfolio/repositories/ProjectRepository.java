@@ -10,7 +10,7 @@ import java.util.List;
 @Repository
 public interface ProjectRepository extends JpaRepository <Project, Long> {
 
-    Project findProjectByTag(String tag);
+    Project findProjectByTags(String tag);
 
     void delete(Project project);
 
