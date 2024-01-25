@@ -17,6 +17,7 @@ public class ProjectController {
     @Autowired
     private ProjectServiceImpl projectService;
 
+
     @PostMapping
     public ResponseEntity<Project> save(@RequestBody ProjectDTO projectDTO){
         var project = projectService.create(projectDTO);
@@ -35,14 +36,14 @@ public class ProjectController {
         return new ResponseEntity<>(project, HttpStatus.OK);
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("/{userId}")
     public ResponseEntity<Project> update(@PathVariable Long id, @RequestBody ProjectDTO projectDTO){
         var findProject = projectService.findProjectById(id);
         var saveProject = projectService.save(findProject);
         return new ResponseEntity<>(saveProject, HttpStatus.OK);
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/{userId}")
     public void delete(@PathVariable Long id){
         projectService.delete(id);
     }

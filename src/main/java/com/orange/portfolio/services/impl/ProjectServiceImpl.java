@@ -4,9 +4,11 @@ import com.orange.portfolio.dtos.project.ProjectDTO;
 import com.orange.portfolio.entities.Project;
 import com.orange.portfolio.repositories.ProjectRepository;
 import com.orange.portfolio.services.ProjectService;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -15,6 +17,9 @@ public class ProjectServiceImpl implements ProjectService {
     @Autowired
     private ProjectRepository repository;
 
+    @Autowired
+    private ModelMapper modelMapper;
+
     @Override
     public Project save(Project project) {
         return repository.save(project);
@@ -22,7 +27,8 @@ public class ProjectServiceImpl implements ProjectService {
 
     @Override
     public Project create(ProjectDTO projectDTO) {
-        Project project = new Project(projectDTO);
+        Project project = modelMapper.map(projectDTO, Project.class);
+        project.setDate(LocalDate.now());
         return this.save(project);
     }
 
@@ -39,7 +45,7 @@ public class ProjectServiceImpl implements ProjectService {
     @Override
     public List<Project> getAllByUserId(Long userId) {
         if (userId > 0){
-            return repository.findAllByUserId(userId);
+            return repository.findAllByClientId(userId);
         } else return this.getAllProjects();
     }
 
