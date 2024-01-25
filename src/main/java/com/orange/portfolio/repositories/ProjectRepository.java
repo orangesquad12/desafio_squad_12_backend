@@ -14,7 +14,7 @@ public interface ProjectRepository extends JpaRepository <Project, Long> {
 
     void delete(Project project);
 
-    @Query(value = "select user_id from project p where p.user_id =?1",
+    @Query(value = "select client_id from project p where p.client_id =?1",
             nativeQuery = true)
-    List<Project> findAllByUserId(Long userId);
+    List<Project> findAllByClientId(Long userId);
 }
