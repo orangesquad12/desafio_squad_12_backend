@@ -1,5 +1,6 @@
 package com.orange.portfolio.entities;
 
+import com.orange.portfolio.dtos.project.ProjectDTO;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
@@ -32,6 +33,16 @@ public class Project  implements Serializable {
 
     public Project() {
 
+    }
+
+    public Project(ProjectDTO data){
+        User user = new User(data.user());
+        this.userId = user;
+        this.description = data.description();
+        this.title = data.title();
+        this.image = data.image();
+        this.tags = data.tags();
+        this.date = LocalDate.now();
     }
 
     public Project(User userId, String title, List<String> tags, String description, String image, LocalDate date) {
