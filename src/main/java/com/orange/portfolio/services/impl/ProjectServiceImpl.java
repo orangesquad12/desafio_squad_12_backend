@@ -51,7 +51,7 @@ public class ProjectServiceImpl implements ProjectService {
 
     @Override
     public void delete(Long id) {
-        var project = repository.findById(id);
+        var project = repository.findById(id).orElseThrow();
         repository.delete(project);
     }
 }
