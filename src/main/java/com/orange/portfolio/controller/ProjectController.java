@@ -3,6 +3,7 @@ package com.orange.portfolio.controller;
 import com.orange.portfolio.dtos.project.ProjectDTO;
 import com.orange.portfolio.entities.Project;
 import com.orange.portfolio.services.impl.ProjectServiceImpl;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,13 +20,13 @@ public class ProjectController {
 
 
     @PostMapping
-    public ResponseEntity<Project> save(@RequestBody ProjectDTO projectDTO){
+    public ResponseEntity<Project> save(@RequestBody @Valid ProjectDTO projectDTO){
         var project = projectService.create(projectDTO);
         return new ResponseEntity<>(project, HttpStatus.CREATED);
     }
 
     @GetMapping
-    public ResponseEntity<List<Project>> getAllByUserId(@RequestParam(value = "userId") Long userId){
+    public ResponseEntity<List<Project>> getAllByUserId(@RequestParam(value = "userId") @Valid Long userId){
         var projectList = projectService.getAllByUserId(userId);
         return new ResponseEntity<>(projectList, HttpStatus.OK);
     }
@@ -37,7 +38,7 @@ public class ProjectController {
     }
 
     @PutMapping("/{userId}")
-    public ResponseEntity<Project> update(@PathVariable Long id, @RequestBody ProjectDTO projectDTO){
+    public ResponseEntity<Project> update(@PathVariable Long id, @RequestBody @Valid ProjectDTO projectDTO){
         var findProject = projectService.findProjectById(id);
         var saveProject = projectService.save(findProject);
         return new ResponseEntity<>(saveProject, HttpStatus.OK);
