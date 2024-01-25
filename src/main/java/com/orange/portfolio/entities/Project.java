@@ -19,7 +19,7 @@ public class Project  implements Serializable {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "client_Id")
+    @JoinColumn(name = "client_id")
     private User userId;
 
     private String title;
@@ -36,8 +36,7 @@ public class Project  implements Serializable {
     }
 
     public Project(ProjectDTO data){
-        User user = new User(data.user());
-        this.userId = user;
+        this.setUserId(new User(data.userId()));
         this.description = data.description();
         this.title = data.title();
         this.image = data.image();
