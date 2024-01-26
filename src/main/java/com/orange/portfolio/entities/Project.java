@@ -36,7 +36,7 @@ public class Project  implements Serializable {
     }
 
     public Project(ProjectDTO data){
-        this.setUserId(new User(data.userId()));
+        this.userId = new User(data.userId());
         this.description = data.description();
         this.title = data.title();
         this.image = data.image();

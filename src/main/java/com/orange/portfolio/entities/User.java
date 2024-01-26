@@ -22,9 +22,11 @@ public class User implements Serializable {
     @JsonIgnore
     @OneToMany(mappedBy = "userId")
     private List<Project> projects;
-
-    public User() {
+    public User(){
         //Construtor sem argumentos
+    }
+    public User(Long aLong) {
+
     }
 
     public User(UserDTO data){
