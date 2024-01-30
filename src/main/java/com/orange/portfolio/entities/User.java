@@ -19,6 +19,7 @@ public class User implements Serializable {
     private String image;
     private String country;
     private String email;
+    private String password;
     @JsonIgnore
     @OneToMany(mappedBy = "userId")
     private List<Project> projects;
@@ -34,16 +35,18 @@ public class User implements Serializable {
         this.lastName = data.lastName();
         this.country = data.country();
         this.email = data.email();
+        this.password = data.password();
         this.image = data.image();
     }
 
 
-    public User(String firstName, String lastName, String image, String country, String email, List<Project> projects) {
+    public User(String firstName, String lastName, String image, String country, String email, String password, List<Project> projects) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.image = image;
         this.country = country;
         this.email = email;
+        this.password = password;
         this.projects = projects;
     }
 
@@ -69,6 +72,10 @@ public class User implements Serializable {
 
     public String getEmail() {
         return email;
+    }
+
+    public String getPassword() {
+        return password;
     }
 
     public List<Project> getProjects() {
@@ -99,6 +106,9 @@ public class User implements Serializable {
         this.email = email;
     }
 
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
     public void setProjects(List<Project> projects) {
         this.projects = projects;
@@ -109,12 +119,12 @@ public class User implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
-        return id == user.id && Objects.equals(firstName, user.firstName) && Objects.equals(lastName, user.lastName) && Objects.equals(image, user.image) && Objects.equals(country, user.country) && Objects.equals(email, user.email) && Objects.equals(projects, user.projects);
+        return id == user.id && Objects.equals(firstName, user.firstName) && Objects.equals(lastName, user.lastName) && Objects.equals(image, user.image) && Objects.equals(country, user.country) && Objects.equals(email, user.email) && Objects.equals(password, user.password) && Objects.equals(projects, user.projects);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, firstName, lastName, image, country, email, projects);
+        return Objects.hash(id, firstName, lastName, image, country, email, password, projects);
     }
 
 }
