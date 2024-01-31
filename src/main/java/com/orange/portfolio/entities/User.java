@@ -50,6 +50,10 @@ public class User implements Serializable {
         this.projects = projects;
     }
 
+    public User(String email, String password) {
+
+    }
+
     public Long getId() {
         return id;
     }
