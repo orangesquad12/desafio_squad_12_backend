@@ -10,17 +10,12 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("users")
+@RequestMapping("/users")
 public class UserController {
 
     @Autowired
     private UserServiceImpl userService;
 
-    @PostMapping
-    public ResponseEntity<User> save(@RequestBody @Valid UserDTO userDTO){
-        var user = userService.create(userDTO);
-        return new ResponseEntity<>(user, HttpStatus.CREATED);
-    }
 
     @PutMapping("/{id}")
     public ResponseEntity<User> update(@PathVariable Long id,
