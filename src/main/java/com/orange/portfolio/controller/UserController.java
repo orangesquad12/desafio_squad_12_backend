@@ -8,14 +8,21 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 @RestController
-@RequestMapping("/users")
+@RequestMapping("/api/users")
 public class UserController {
 
     @Autowired
     private UserServiceImpl userService;
 
+
+    @PostMapping("/image/{id}")
+    public ResponseEntity uploadImage(@RequestPart(value = "image") MultipartFile file, @PathVariable Long id) {
+        userService.uploadImage(file, id);
+        return new ResponseEntity<>(HttpStatus.CREATED);
+    }
 
     @PutMapping("/{id}")
     public ResponseEntity<User> update(@PathVariable Long id,
