@@ -1,8 +1,8 @@
 package com.orange.portfolio.controller;
 
 import com.orange.portfolio.dtos.user.LoginDTO;
-import com.orange.portfolio.dtos.user.RegisterDTO;
-import com.orange.portfolio.services.impl.AuthenticationService;
+import com.orange.portfolio.dtos.user.UserDTO;
+import com.orange.portfolio.services.auth.AuthenticationService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -18,14 +18,13 @@ public class AuthenticationController {
     @Autowired
     private AuthenticationService authenticationService;
 
-
     @PostMapping("/login")
     public ResponseEntity login(@RequestBody @Valid LoginDTO data){
         return authenticationService.login(data);
     }
 
     @PostMapping("/register")
-    public ResponseEntity register(@RequestBody @Valid RegisterDTO data){
+    public ResponseEntity register(@RequestBody @Valid UserDTO data){
         return authenticationService.register(data);
     }
 }
