@@ -3,14 +3,18 @@ package com.orange.portfolio.entities;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.orange.portfolio.dtos.user.UserDTO;
 import jakarta.persistence.*;
-import java.io.Serializable;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
+import java.util.Collection;
 import java.util.List;
 import java.util.Objects;
 
 @Entity
 @Table(name = "tb_user")
-public class User implements Serializable {
-    private static final long serialVersionUID = 1l;
+public class User implements UserDetails {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -31,12 +35,12 @@ public class User implements Serializable {
     }
 
     public User(UserDTO data){
-        this.firstName = data.firstName();
-        this.lastName = data.lastName();
-        this.country = data.country();
-        this.email = data.email();
-        this.password = data.password();
-        this.image = data.image();
+        this.firstName = data.getFirstName();
+        this.lastName = data.getLastName();
+        this.country = data.getCountry();
+        this.email = data.getEmail();
+        this.password = data.getPassword();
+        this.image = data.getImage();
     }
 
 
@@ -78,8 +82,38 @@ public class User implements Serializable {
         return email;
     }
 
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return List.of(new SimpleGrantedAuthority("ROLE_USER"));
+    }
+
     public String getPassword() {
         return password;
+    }
+
+    @Override
+    public String getUsername() {
+        return email;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return true;
     }
 
     public List<Project> getProjects() {
