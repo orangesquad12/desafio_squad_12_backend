@@ -17,11 +17,9 @@ public class UserDTO {
         this.password = password;
     }
 
-    public UserDTO(String firstName, String lastName, String image, String country, String email, String password) {
+    public UserDTO(String firstName, String lastName, String email, String password) {
         this.firstName = firstName;
         this.lastName = lastName;
-        this.image = image;
-        this.country = country;
         this.email = email;
         this.password = password;
     }

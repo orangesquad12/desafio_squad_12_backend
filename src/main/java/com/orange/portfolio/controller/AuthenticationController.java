@@ -44,7 +44,7 @@ public class AuthenticationController {
     public ResponseEntity register(@RequestBody @Valid UserDTO data){
         if (userRepository.findByEmail(data.getEmail()) != null) return ResponseEntity.badRequest().build();
         String encryptedPassword = new BCryptPasswordEncoder().encode(data.getPassword());
-        UserDTO newUser = new UserDTO(data.getFirstName(), data.getLastName(), data.getCountry(), data.getEmail(), encryptedPassword);
+        UserDTO newUser = new UserDTO(data.getFirstName(), data.getLastName(), data.getEmail(), encryptedPassword);
         userService.create(newUser);
         return ResponseEntity.ok().build();
     }
