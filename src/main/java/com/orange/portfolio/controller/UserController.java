@@ -1,7 +1,6 @@
 package com.orange.portfolio.controller;
 
 import com.orange.portfolio.dtos.user.UserDTO;
-import com.orange.portfolio.entities.User;
 import com.orange.portfolio.services.impl.UserServiceImpl;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,11 +24,12 @@ public class UserController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<User> update(@PathVariable Long id,
+    public ResponseEntity<UserDTO> update(@PathVariable Long id,
                                        @RequestBody @Valid UserDTO userDTO){
         var findUser = userService.findUserById(id);
-        var saveUser = userService.save(findUser);
-        return new ResponseEntity<>(saveUser, HttpStatus.OK);
+        var user = userDTO.toEntity(findUser);
+        var userUpdated = userService.save(user);
+        return new ResponseEntity<>(new UserDTO(userUpdated), HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
