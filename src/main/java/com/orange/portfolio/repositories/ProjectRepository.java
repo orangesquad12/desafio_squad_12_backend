@@ -10,11 +10,11 @@ import java.util.List;
 @Repository
 public interface ProjectRepository extends JpaRepository <Project, Long> {
 
-    Project findProjectByTags(String tag);
+    List<Project> findProjectByTags(String tag);
 
     void delete(Project project);
 
-    @Query(value = "select client_id from project p where p.client_id =?1",
+    @Query(value = "select client_id from tb_project p where p.client_id =?1",
             nativeQuery = true)
     List<Project> findAllByClientId(Long userId);
 }
