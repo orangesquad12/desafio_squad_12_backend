@@ -25,6 +25,8 @@ public class Project  implements Serializable {
     private String title;
 
     @ElementCollection
+    @CollectionTable(name = "project_tags", joinColumns = @JoinColumn(name = "project_id"))
+    @Column(name = "tags")
     private List<String> tags;
 
     private String description;
@@ -36,11 +38,9 @@ public class Project  implements Serializable {
     }
 
     public Project(ProjectDTO data){
-        this.userId = new User(data.userId());
-        this.description = data.description();
-        this.title = data.title();
-        this.image = data.image();
-        this.tags = data.tags();
+        this.description = data.getDescription();
+        this.title = data.getTitle();
+        this.tags = data.getTags();
         this.date = LocalDate.now();
     }
 
