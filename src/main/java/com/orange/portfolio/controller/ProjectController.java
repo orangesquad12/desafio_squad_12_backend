@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -20,31 +21,37 @@ public class ProjectController {
 
 
     @PostMapping
-    public ResponseEntity<Project> save(@RequestBody @Valid ProjectDTO projectDTO){
+    public ResponseEntity<ProjectDTO> save(@RequestBody @Valid ProjectDTO projectDTO){
         var project = projectService.create(projectDTO);
         return new ResponseEntity<>(project, HttpStatus.CREATED);
     }
 
+    @PostMapping("/image/{id}")
+    public ResponseEntity uploadImage(@RequestPart(value = "image") MultipartFile file, @PathVariable Long id) {
+        projectService.uploadImage(file, id);
+        return new ResponseEntity<>(HttpStatus.CREATED);
+    }
+
     @GetMapping
-    public ResponseEntity<List<Project>> getAllByUserId(@RequestParam(value = "userId") @Valid Long userId){
+    public ResponseEntity<List<Project>> getAllByUserId(@RequestParam(name = "userId",
+            required = false) Long userId){
         var projectList = projectService.getAllByUserId(userId);
         return new ResponseEntity<>(projectList, HttpStatus.OK);
     }
 
     @GetMapping("/{tag}")
-    public ResponseEntity<Project> getProjectByTag(@PathVariable String tag){
+    public ResponseEntity<List<Project>> getProjectByTag(@PathVariable String tag){
         var project = projectService.getProjectByTag(tag);
         return new ResponseEntity<>(project, HttpStatus.OK);
     }
 
-    @PutMapping("/{userId}")
-    public ResponseEntity<Project> update(@PathVariable Long id, @RequestBody @Valid ProjectDTO projectDTO){
-        var findProject = projectService.findProjectById(id);
-        var saveProject = projectService.save(findProject);
-        return new ResponseEntity<>(saveProject, HttpStatus.OK);
+    @PutMapping("/{id}")
+    public ResponseEntity<ProjectDTO> update(@PathVariable Long id, @RequestBody @Valid ProjectDTO projectDTO){
+        var project = projectService.update(id, projectDTO);
+        return new ResponseEntity<>(project, HttpStatus.OK);
     }
 
-    @DeleteMapping("/{userId}")
+    @DeleteMapping("/{id}")
     public void delete(@PathVariable Long id){
         projectService.delete(id);
     }
