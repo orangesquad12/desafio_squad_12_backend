@@ -1,5 +1,7 @@
 package com.orange.portfolio.dtos.user;
 
+import com.orange.portfolio.entities.User;
+
 public class UserDTO {
 
     private String firstName;
@@ -31,6 +33,21 @@ public class UserDTO {
         this.country = country;
         this.email = email;
         this.password = password;
+    }
+
+    public UserDTO(User saveUser) {
+        this.firstName = saveUser.getFirstName();
+        this.lastName = saveUser.getLastName();
+        this.country = saveUser.getCountry();
+        this.email = saveUser.getEmail();
+    }
+
+    public User toEntity(User user){
+        user.setFirstName(firstName);
+        user.setLastName(lastName);
+        user.setCountry(country);
+        user.setEmail(email);
+        return user;
     }
 
     public String getFirstName() {
