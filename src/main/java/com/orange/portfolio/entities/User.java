@@ -25,8 +25,9 @@ public class User implements UserDetails {
     private String country;
     private String email;
     private String password;
+    @JoinColumn(name = "project_id", referencedColumnName = "id")
     @JsonIgnore
-    @OneToMany(mappedBy = "userId")
+    @OneToMany
     private List<Project> projects;
     public User(){
         //Construtor sem argumentos
@@ -56,6 +57,10 @@ public class User implements UserDetails {
     }
 
     public User(String email, String password) {
+
+    }
+
+    public User(String firstName, String lastName, String country, String email) {
 
     }
 
