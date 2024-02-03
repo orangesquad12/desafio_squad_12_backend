@@ -32,14 +32,13 @@ public class ProjectController {
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
-    @GetMapping
-    public ResponseEntity<List<Project>> getAllByUserId(@RequestParam(name = "userId",
-            required = false) Long userId){
+    @GetMapping("/{userId}")
+    public ResponseEntity<List<Project>> getAllByUserId(@PathVariable Long userId){
         var projectList = projectService.getAllByUserId(userId);
         return new ResponseEntity<>(projectList, HttpStatus.OK);
     }
 
-    @GetMapping("/{tag}")
+    @GetMapping("/tag/{tag}")
     public ResponseEntity<List<Project>> getProjectByTag(@PathVariable String tag){
         var project = projectService.getProjectByTag(tag);
         return new ResponseEntity<>(project, HttpStatus.OK);
