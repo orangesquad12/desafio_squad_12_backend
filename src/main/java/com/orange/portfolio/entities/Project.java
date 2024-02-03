@@ -20,7 +20,7 @@ public class Project  implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "client_id")
-    private User userId;
+    private User user;
 
     private String title;
 
@@ -45,7 +45,7 @@ public class Project  implements Serializable {
     }
 
     public Project(User userId, String title, List<String> tags, String description, String image, LocalDate date) {
-        this.userId = userId;
+        this.user = userId;
         this.title = title;
         this.tags = tags;
         this.description = description;
@@ -57,8 +57,8 @@ public class Project  implements Serializable {
         return id;
     }
 
-    public User getUserId() {
-        return userId;
+    public User getUser() {
+        return user;
     }
 
     public String getTitle() {
@@ -81,8 +81,8 @@ public class Project  implements Serializable {
         return date;
     }
 
-    public void setUserId(User userId) {
-        this.userId = userId;
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public void setTitle(String title) {
@@ -110,12 +110,12 @@ public class Project  implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Project project = (Project) o;
-        return id == project.id && Objects.equals(userId, project.userId) && Objects.equals(title, project.title) && Objects.equals(tags, project.tags) && Objects.equals(description, project.description) && Objects.equals(image, project.image) && Objects.equals(date, project.date);
+        return id == project.id && Objects.equals(user, project.user) && Objects.equals(title, project.title) && Objects.equals(tags, project.tags) && Objects.equals(description, project.description) && Objects.equals(image, project.image) && Objects.equals(date, project.date);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, userId, title, tags, description, image, date);
+        return Objects.hash(id, user, title, tags, description, image, date);
     }
 }
 

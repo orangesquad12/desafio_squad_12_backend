@@ -25,7 +25,7 @@ public class ProjectDTO {
     }
 
     public ProjectDTO(Project project) {
-        this.userId = project.getUserId().getId();
+        this.userId = project.getUser().getId();
         this.title = project.getTitle();
         this.tags = project.getTags();
         this.description = project.getDescription();
