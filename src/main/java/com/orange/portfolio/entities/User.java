@@ -28,9 +28,8 @@ public class User implements UserDetails {
     private String email;
     @Column(nullable = false)
     private String password;
-    @JoinColumn(name = "project_id")
-    //@JsonIgnore
-    @OneToMany
+
+    @OneToMany(mappedBy = "user")
     private List<Project> projects;
     public User(){
         //Construtor sem argumentos
