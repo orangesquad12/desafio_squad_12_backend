@@ -1,6 +1,5 @@
 package com.orange.portfolio.entities;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.orange.portfolio.dtos.user.UserDTO;
 import jakarta.persistence.*;
 import org.springframework.security.core.GrantedAuthority;
@@ -19,14 +18,18 @@ public class User implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String firstName;
+    @Column(nullable = false, unique = true)
     private String lastName;
+    @Column(nullable = false, unique = true)
+    private String firstName;
     private String image;
     private String country;
+    @Column(nullable = false, unique = true)
     private String email;
+    @Column(nullable = false)
     private String password;
-    @JoinColumn(name = "project_id", referencedColumnName = "id")
-    @JsonIgnore
+    @JoinColumn(name = "project_id")
+    //@JsonIgnore
     @OneToMany
     private List<Project> projects;
     public User(){
