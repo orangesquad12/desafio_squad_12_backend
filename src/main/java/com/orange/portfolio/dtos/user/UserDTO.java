@@ -1,9 +1,11 @@
 package com.orange.portfolio.dtos.user;
 
 import com.orange.portfolio.entities.User;
+import org.springframework.security.core.userdetails.UserDetails;
 
 public class UserDTO {
 
+    private Long id;
     private String firstName;
     private String lastName;
     private String image;
@@ -36,10 +38,15 @@ public class UserDTO {
     }
 
     public UserDTO(User saveUser) {
+        this.id = saveUser.getId();
         this.firstName = saveUser.getFirstName();
         this.lastName = saveUser.getLastName();
         this.country = saveUser.getCountry();
         this.email = saveUser.getEmail();
+    }
+
+    public UserDTO(UserDetails userDetails){
+        this.email = userDetails.getUsername();
     }
 
     public User toEntity(User user){
@@ -48,6 +55,10 @@ public class UserDTO {
         user.setCountry(country);
         user.setEmail(email);
         return user;
+    }
+
+    public Long getId() {
+        return id;
     }
 
     public String getFirstName() {
