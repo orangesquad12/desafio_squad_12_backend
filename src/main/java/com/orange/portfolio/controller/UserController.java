@@ -23,6 +23,12 @@ public class UserController {
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<UserDTO> getById(@PathVariable Long id){
+        var user = userService.findUserById(id);
+        return new ResponseEntity<>(new UserDTO(user), HttpStatus.OK);
+    }
+
     @PutMapping("/{id}")
     public ResponseEntity<UserDTO> update(@PathVariable Long id,
                                        @RequestBody @Valid UserDTO userDTO){
@@ -31,6 +37,8 @@ public class UserController {
         var userUpdated = userService.save(user);
         return new ResponseEntity<>(new UserDTO(userUpdated), HttpStatus.OK);
     }
+
+
 
     @DeleteMapping("/{id}")
     public void delete(@PathVariable Long id){
