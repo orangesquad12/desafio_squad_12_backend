@@ -10,15 +10,22 @@ public class ProjectDTO {
     private Long userId;
     private String title;
     private List<String> tags;
-    private String description;
+    private String detailing;
     private LocalDate date;
 
-    public ProjectDTO(Long userId, String title, List<String> tags, String description, LocalDate date) {
+    public ProjectDTO(Long userId, String title, List<String> tags, String detailing, LocalDate date) {
         this.userId = userId;
         this.title = title;
         this.tags = tags;
-        this.description = description;
+        this.detailing = detailing;
         this.date = date;
+    }
+
+    public ProjectDTO(Long userId, String title, List<String> tags, String detailing){
+        this.userId = userId;
+        this.title = title;
+        this.tags = tags;
+        this.detailing = detailing;
     }
 
     public ProjectDTO() {
@@ -28,7 +35,7 @@ public class ProjectDTO {
         this.userId = project.getUser().getId();
         this.title = project.getTitle();
         this.tags = project.getTags();
-        this.description = project.getDescription();
+        this.detailing = project.getDetailing();
         this.date = project.getDate();
     }
 
@@ -56,10 +63,10 @@ public class ProjectDTO {
         this.tags = tags;
     }
 
-    public String getDescription() {
-        return description;
+    public String getDetailing() {
+        return detailing;
     }
 
-    public void setDescription(String description) {
+    public void setDetailing(String detailing) {
     }
 }
