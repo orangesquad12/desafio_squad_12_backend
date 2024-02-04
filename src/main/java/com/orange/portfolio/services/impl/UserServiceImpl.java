@@ -5,6 +5,7 @@ import com.orange.portfolio.entities.User;
 import com.orange.portfolio.repositories.UserRepository;
 import com.orange.portfolio.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -26,6 +27,10 @@ public class UserServiceImpl implements UserService {
     public User create(UserDTO userDTO) {
         User newUser = new User(userDTO);
         return this.save(newUser);
+    }
+
+    public UserDetails findByEmail(String email) {
+        return repository.findByEmail(email);
     }
 
     @Override
