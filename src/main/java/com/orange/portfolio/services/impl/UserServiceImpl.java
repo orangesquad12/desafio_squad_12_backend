@@ -28,8 +28,6 @@ public class UserServiceImpl implements UserService {
         return this.save(newUser);
     }
 
-
-
     @Override
     public User findUserById(Long id) {
         return repository.findById(id).orElseThrow();
