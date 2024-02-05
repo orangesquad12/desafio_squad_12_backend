@@ -14,8 +14,6 @@ ALTER TABLE tb_user ADD CONSTRAINT uc_tb_user_email UNIQUE (email);
 
 ALTER TABLE tb_user ADD CONSTRAINT uc_tb_user_first_name UNIQUE (first_name);
 
-ALTER TABLE tb_user ADD CONSTRAINT uc_tb_user_last_name UNIQUE (last_name);
-
 
 CREATE TABLE project_tags (
   project_id BIGINT NOT NULL,
