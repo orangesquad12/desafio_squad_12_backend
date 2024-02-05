@@ -141,7 +141,7 @@ Com a aplicação rodando, clique neste link: <a href="[http://localhost:8085/sw
   </tr>
   <tr>
   	<td>Deploy</td>
-  	<td>AWS EC2</td>
+  	<td>Render</td>
   </tr>
   </table>
 
