@@ -25,20 +25,14 @@ public class UserController {
     }
 
     @GetMapping
-    public ResponseEntity<UserDetails> getByEmail(@RequestParam String email){
+    public ResponseEntity<UserDetails> getByEmail(@RequestParam String email) {
         var user = userService.findByEmail(email);
         return new ResponseEntity<>(user, HttpStatus.OK);
     }
 
-    /*@GetMapping("/{id}")
-    public ResponseEntity<UserDTO> getById(@PathVariable Long id){
-        var user = userService.findUserById(id);
-        return new ResponseEntity<>(new UserDTO(user), HttpStatus.OK);
-    }*/
-
     @PutMapping("/{id}")
     public ResponseEntity<UserDTO> update(@PathVariable Long id,
-                                       @RequestBody @Valid UserDTO userDTO){
+                                          @RequestBody @Valid UserDTO userDTO) {
         var findUser = userService.findUserById(id);
         var user = userDTO.toEntity(findUser);
         var userUpdated = userService.save(user);
@@ -46,9 +40,8 @@ public class UserController {
     }
 
 
-
     @DeleteMapping("/{id}")
-    public void delete(@PathVariable Long id){
+    public void delete(@PathVariable Long id) {
         userService.delete(id);
     }
 }
