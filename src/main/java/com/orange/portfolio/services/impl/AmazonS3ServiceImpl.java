@@ -3,7 +3,7 @@ package com.orange.portfolio.services.impl;
 import com.amazonaws.services.s3.model.CannedAccessControlList;
 import com.amazonaws.services.s3.model.DeleteObjectRequest;
 import com.amazonaws.services.s3.model.PutObjectRequest;
-import com.orange.portfolio.configuration.AwsS3Config;
+import com.orange.portfolio.configuration.AwsS3Configuration;
 import com.orange.portfolio.services.AmazonS3Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -19,7 +19,7 @@ import java.util.Date;
 public class AmazonS3ServiceImpl implements AmazonS3Service {
 
     @Autowired
-    private AwsS3Config awsS3Config;
+    private AwsS3Configuration awsS3Config;
 
     @Value("${aws.s3.bucketName}")
     private String bucketName;
