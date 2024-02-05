@@ -1,5 +1,6 @@
 package com.orange.portfolio.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.orange.portfolio.dtos.project.ProjectDTO;
 import jakarta.persistence.*;
 
@@ -10,7 +11,7 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "tb_project")
-public class Project  implements Serializable {
+public class Project implements Serializable {
 
     private static final long serialVersionUID = 1l;
 
@@ -19,6 +20,7 @@ public class Project  implements Serializable {
     private Long id;
 
     @ManyToOne
+    @JsonBackReference
     @JoinColumn(name = "client_id")
     private User user;
 
@@ -37,14 +39,16 @@ public class Project  implements Serializable {
 
     }
 
-    public Project(ProjectDTO data){
+    public Project(ProjectDTO data) {
+        this.id = data.getId();
         this.detailing = data.getDetailing();
         this.title = data.getTitle();
         this.tags = data.getTags();
         this.date = LocalDate.now();
     }
 
-    public Project(User userId, String title, List<String> tags, String detailing, String image, LocalDate date) {
+    public Project(Long id, User userId, String title, List<String> tags, String detailing, String image, LocalDate date) {
+        this.id = id;
         this.user = userId;
         this.title = title;
         this.tags = tags;
@@ -53,7 +57,8 @@ public class Project  implements Serializable {
         this.date = date;
     }
 
-    public Project(User userId, String title, List<String> tags, String detailing) {
+    public Project(Long id, User userId, String title, List<String> tags, String detailing) {
+        this.id = id;
         this.user = userId;
         this.title = title;
         this.tags = tags;

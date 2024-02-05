@@ -7,13 +7,15 @@ import java.util.List;
 
 public class ProjectDTO {
 
+    private Long id;
     private Long userId;
     private String title;
     private List<String> tags;
     private String detailing;
     private LocalDate date;
 
-    public ProjectDTO(Long userId, String title, List<String> tags, String detailing, LocalDate date) {
+    public ProjectDTO(Long id, Long userId, String title, List<String> tags, String detailing, LocalDate date) {
+        this.id = id;
         this.userId = userId;
         this.title = title;
         this.tags = tags;
@@ -21,7 +23,8 @@ public class ProjectDTO {
         this.date = date;
     }
 
-    public ProjectDTO(Long userId, String title, List<String> tags, String detailing){
+    public ProjectDTO(Long id, Long userId, String title, List<String> tags, String detailing){
+        this.id = id;
         this.userId = userId;
         this.title = title;
         this.tags = tags;
@@ -32,11 +35,20 @@ public class ProjectDTO {
     }
 
     public ProjectDTO(Project project) {
+        this.id = project.getId();
         this.userId = project.getUser().getId();
         this.title = project.getTitle();
         this.tags = project.getTags();
         this.detailing = project.getDetailing();
         this.date = project.getDate();
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public Long getUserId() {
