@@ -14,8 +14,6 @@ public interface ProjectService {
 
     ProjectDTO create(ProjectDTO projectDTO);
 
-    List<Project> getProjectByTag(String tag);
-
     Project findProjectById(Long id);
 
     List<Project> getAllByUserId(Long userId);

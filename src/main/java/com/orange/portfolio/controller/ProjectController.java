@@ -38,9 +38,9 @@ public class ProjectController {
         return new ResponseEntity<>(projectList, HttpStatus.OK);
     }
 
-    @GetMapping("/tag/{tag}")
-    public ResponseEntity<List<Project>> getProjectByTag(@PathVariable String tag){
-        var project = projectService.getProjectByTag(tag);
+    @GetMapping
+    public ResponseEntity<List<Project>> getAllProject(){
+        var project = projectService.getAllProjects();
         return new ResponseEntity<>(project, HttpStatus.OK);
     }
 

@@ -48,12 +48,6 @@ public class ProjectServiceImpl implements ProjectService {
     }
 
     @Override
-    public List<Project> getProjectByTag(String tag) {
-        return repository.findProjectByTags(tag);
-
-    }
-
-    @Override
     public Project findProjectById(Long id) {
         return repository.findById(id).orElseThrow();
     }
